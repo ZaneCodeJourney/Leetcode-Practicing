@@ -8,22 +8,25 @@ from typing import List
 # @lc code=start
 class Solution:
     def minSubArrayLen(self, s: int, nums: List[int]) -> int:
-        if nums is None or len(nums) == 0:
-            return 0
-        lenf = len(nums) + 1
-        total = 0
-        i = j = 0
-        while(j < len(nums)):
-            total += nums[j]
-            j += 1
-            while(total >= s):
-                lenf = min(j-i, lenf)
-                total -= nums[i]
-                i += 1
-        if lenf == len(nums) + 1:
-            return 0
-        else:
-            return lenf
+        l = len(nums)
+        left = 0
+        right = 0
+        min_len = float('inf')
+        cur_sum = 0 #当前的累加值
+        
+        while right < l:
+            cur_sum += nums[right]
+            
+            while cur_sum >= s: # 当前累加值大于目标值
+                min_len = min(min_len, right - left + 1)
+                cur_sum -= nums[left]
+                left += 1
+            
+            right += 1
+        
+        return min_len if min_len != float('inf') else 0
+
+
 # @lc code=end
 
 
