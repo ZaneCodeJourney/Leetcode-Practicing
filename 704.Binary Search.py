@@ -10,6 +10,7 @@ class Solution:
         left, right = 0, len(nums)
         while left < right:
             mid = (left + right) // 2
+        
             if nums[mid] > target:
                 right = mid 
             elif nums[mid] < target:
