@@ -19,4 +19,3 @@ class Solution:
                 j += 1
         return nums1
 # @lc code=end
-
