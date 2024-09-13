@@ -12,21 +12,17 @@ class ListNode:
         self.next = next
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode(0)
-        dummy.next = head
-        prev = dummy
-        cur = head
-        while cur and cur.next:
-            first = cur
-            second = cur.next
-            
-            first.next = second.next
-            second.next = first
-            prev.next = second
-            
-            prev = first
-            cur = first.next
-            
-        return dummy.next        
+        if head is None or head.next is None:
+            return head
+
+        # 待翻转的两个node分别是pre和cur
+        pre = head
+        cur = head.next
+        next = head.next.next
+        
+        cur.next = pre  # 交换
+        pre.next = self.swapPairs(next) # 将以next为head的后续链表两两交换
+         
+        return cur        
 # @lc code=end
 
