@@ -18,14 +18,6 @@ class Solution:
                 b[char] += 1
             else:
                 b[char] = 1
-        for key in a:
-            if a[key] == b.get(key, 0):
-                b[key] = 0
-            else:
-                return False
-        for key in b:
-            if b[key]:
-                return False
-        return True
+        return a == b
 # @lc code=end
 
