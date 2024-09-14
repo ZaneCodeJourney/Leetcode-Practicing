@@ -21,7 +21,5 @@ class Solution:
             head=head.next
         return None
             
-
-        
 # @lc code=end
 
