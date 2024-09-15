@@ -1,8 +1,9 @@
 #
 # @lc app=leetcode.cn id=383 lang=python3
 #
-# [383] Ransom Note 
+# [383] Ransom Note
 #
+
 
 # @lc code=start
 class Solution:
@@ -19,5 +20,6 @@ class Solution:
             else:
                 count[char] -= 1
         return True
-# @lc code=end
 
+
+# @lc code=end
