@@ -1,3 +1,4 @@
-def solution(n):
-    return n / 10 + n % 10
-print(map(int, "13241234"))
+print(len("sdafsdf"))
+a = "dashfladf"
+for i in a:
+    print(i)
