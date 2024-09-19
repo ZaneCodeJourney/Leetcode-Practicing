@@ -8,13 +8,11 @@
 # @lc code=start
 class Solution:
     def reverseWords(self, s: str) -> str:
-        strs = s.split()
-        left, right = 0, len(strs) - 1
-        while left < right:
-            strs[left], strs[right] = strs[right], strs[left]
-            left += 1
-            right -= 1
-        return " ".join(strs)
+        # 反转整个字符串
+        s = s[::-1]
+        # 将字符串拆分为单词，并反转每个单词
+        s = " ".join(word[::-1] for word in s.split())
+        return s
 
 
 # @lc code=end
