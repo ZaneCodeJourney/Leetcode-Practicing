@@ -9,13 +9,19 @@
 class Solution:
 
     def reverseStr(self, s: str, k: int) -> str:
-        p = 0
+        def reverse_substring(text):
+            left, right = 0, len(text) - 1
+            while left < right:
+                text[left], text[right] = text[right], text[left]
+                left += 1
+                right -= 1
+            return text
 
-        while p < len(s):
-            p2 = p + k
-            s = s[:p] + s[p:p2][::-1] + s[p2:]
-            p = p + 2 * k
-        return s
+        res = list(s)
+
+        for cur in range(0, len(s), 2 * k):
+            res[cur : cur + k] = reverse_substring(res[cur : cur + k])
+        return "".join(res)
 
 
 # @lc code=end
