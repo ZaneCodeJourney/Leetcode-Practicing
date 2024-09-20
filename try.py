@@ -1,2 +1,2 @@
-kk = "asdf jasdflk asdf"
-print(kk.split(" "))
+a = "aabb"
+print(a[:2]           a[2:4])
