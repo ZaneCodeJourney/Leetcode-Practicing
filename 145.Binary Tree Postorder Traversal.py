@@ -16,17 +16,18 @@ class TreeNode:
 
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        res = []
-
-        def dps(node):
-            if node is None:
-                return
-            dps(node.left)
-            dps(node.right)
-            res.append(node.val)
-
-        dps(root)
-        return res
+        if not root:
+            return []
+        stack = [root]
+        result = []
+        while stack:
+            node = stack.pop()
+            result.append(node.val)
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
+        return result[::-1]
 
 
 # @lc code=end
