@@ -12,6 +12,9 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
+
+
 class Solution:
     def largestValues(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
@@ -19,19 +22,16 @@ class Solution:
         queue = deque([root])
         result = []
         while queue:
-            level = []
+            max_val = float("-inf")
             for _ in range(len(queue)):
                 cur = queue.popleft()
-                level.append(cur.val)
+                max_val = max(max_val, cur.val)
                 if cur.left:
                     queue.append(cur.left)
                 if cur.right:
                     queue.append(cur.right)
-            result.append(level)
-        res = []
-        for nums in result:
-            res.append(max(nums))
-        return res
+            result.append(max_val)
+        return result
 
 
 # @lc code=end
