@@ -14,19 +14,22 @@
 #         self.right = right
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        ans = 0
+        if not root:
+            return 0
 
-        def dfs(node: Optional[TreeNode], depth: int) -> int:
-            if node is None:
-                return
+        depth = 0
+        queue = collections.deque([root])
+
+        while queue:
             depth += 1
-            nonlocal ans
-            ans = max(ans, depth)
-            dfs(node.left, depth)
-            dfs(node.right, depth)
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
 
-        dfs(root, 0)
-        return ans
+        return depth
 
 
 # @lc code=end
