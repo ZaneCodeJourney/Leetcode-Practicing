@@ -21,10 +21,19 @@ class Solution:
     def maxDepth(self, root: "Node") -> int:
         if not root:
             return 0
-        if not root.children:
-            return 1
-        children_depth = [self.maxDepth(node) for node in root.children]
-        return max(children_depth) + 1
+        ans = 0
+
+        def dfs(node: Optional[Node], depth: int):
+            if node is None:
+                return
+            depth += 1
+            nonlocal ans
+            ans = max(ans, depth)
+            for child in node.children:
+                dfs(child, depth)
+
+        dfs(root, 0)
+        return ans
 
 
 # @lc code=end
