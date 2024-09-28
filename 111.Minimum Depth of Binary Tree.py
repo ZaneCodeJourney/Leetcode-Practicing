@@ -14,24 +14,23 @@
 #         self.right = right
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
-        if not root:
+        return self.getDepth(root)
+
+    def getDepth(self, node):
+        if node is None:
             return 0
-        queue = deque([root])
-        level = 0
-        while queue:
-            level += 1
-            for _ in range(len(queue)):
-                cur = queue.popleft()
 
-                if not cur.left and not cur.right:
-                    return level
+        leftDepth = self.getDepth(node.left)
+        rightDepth = self.getDepth(node.right)
 
-                if cur.left:
-                    queue.append(cur.left)
-                if cur.right:
-                    queue.append(cur.right)
+        if not node.left and node.right:
+            return rightDepth + 1
+        if not node.right and node.left:
+            return leftDepth + 1
 
-        return level
+        result = min(leftDepth, rightDepth) + 1
+
+        return result
 
 
 # @lc code=end
