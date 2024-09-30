@@ -14,21 +14,23 @@
 #         self.right = right
 class Solution:
 
-    def getPath(self, root, path, res):
-        if not root:
-            return None
-        path += str(root.val)
-        if root.left is None and root.right is None:
-            res.append(path)
-        else:
-            path += "->"
-            self.getPath(root.left, path, res)
-            self.getPath(root.right, path, res)
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        stack, path_st, result = [root], [str(root.val)], []
 
-    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
-        res = []
-        self.getPath(root, "", res)
-        return res
+        while stack:
+            cur = stack.pop()
+            path = path_st.pop()
+
+            if not (cur.left or cur.right):
+                result.append(path)
+            if cur.right:
+                stack.append(cur.right)
+                path_st.append(path + "->" + str(cur.right.val))
+            if cur.left:
+                stack.append(cur.left)
+                path_st.append(path + "->" + str(cur.left.val))
+
+        return result
 
 
 # @lc code=end
