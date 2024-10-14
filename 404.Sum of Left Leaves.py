@@ -18,16 +18,13 @@ class TreeNode:
 
 class Solution:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
-        res = 0
-        queue = deque([root])
-        while queue:
-            cur = queue.popleft()
-            if cur.left:
-                if not cur.left.left and not cur.left.right:
-                    res += cur.left.val
-                queue.append(cur.left)
-            if cur.right:
-                queue.append(cur.right)
+        if root is None:
+            return 0
+        leftValue = self.sumOfLeftLeaves(root.left)
+        if root.left is not None and root.left.left is None and root.left.right is None:
+            leftValue = root.left.val
+        rightValue = self.sumOfLeftLeaves(root.right)
+        res = leftValue + rightValue
         return res
 
 
